@@ -138,7 +138,7 @@ class SMACliteEnv(gym.Env):
             for _ in range(self.n_agents))
         self.cx_cy = np.array([map_info.width / 2, map_info.height / 2])
 
-    def reset(self, seed=None, return_info=False, options=None) \
+    def reset(self, seed=None, return_info=True, options=None) \
             -> Tuple[np.ndarray, dict]:
         self.agents = {}
         self.enemies = {}

@@ -18,7 +18,7 @@ def main():
     total_time = 0
     total_timesteps = 0
     for i in range(episode_num):
-        obs, info = env.reset(return_info=True)
+        obs, info = env.reset()
         if RENDER:
             env.render()
         done = False
