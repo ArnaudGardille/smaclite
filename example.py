@@ -1,11 +1,10 @@
 import time
-
 import gym
 import numpy as np
 from gym import Wrapper, ObservationWrapper
 from gym.spaces import MultiDiscrete, Box
 
-import smaclite  # noqa
+import smaclite 
 
 RENDER = True
 USE_CPP_RVO2 = False
@@ -22,7 +21,6 @@ class StateWrapper(ObservationWrapper):
         return self.env.get_state()
 
 def main():
-    #env = "MMM2"
     env = "10m_vs_11m"
     env = gym.make(f"smaclite/{env}-v0",
                    use_cpp_rvo2=USE_CPP_RVO2)
@@ -42,7 +40,6 @@ def main():
         while not done and timestep_no < 200:
             actions = []
             avail_actions = info['avail_actions']
-            print("avail_actions", avail_actions)
             for info in range(env.n_agents):
                 avail_indices = [i for i, x
                                  in enumerate(avail_actions[info])
@@ -50,8 +47,7 @@ def main():
                 actions.append(int(np.random.choice(avail_indices)))
                 # time.sleep(1/2)
             timer = time.time()
-            print("obs", obs)
-            obs, reward, done, info = env.step(actions)
+            obs, reward, done, _, info = env.step(actions)
             episode_time += time.time() - timer
             episode_reward += reward
             timestep_no += 1
